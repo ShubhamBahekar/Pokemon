@@ -1,36 +1,21 @@
-import {
-    getAllPokemon,
-    getAllPokemonType
-  } from "../services/authServices";
- 
-  
-  
-  const usePokemon = () => {
-   
+import { getAllPokemon, getAllPokemonType } from "../services/authServices";
+import { useCallback } from "react";
 
+const usePokemon = () => {
+  const getAllPokemonData = useCallback(async () => {
+    const response = await getAllPokemon();
+    return response;
+  }, []);
   
-  
-     const getAllPokemonData = async () => {
-      const response = await getAllPokemon();
-      //  console.log("Response Pokemon Data", response);
-      
-      return response;
-    };
-  
-    const getAllPokemonTypeList = async() =>{
-        const response = await getAllPokemonType();
-        // console.log("Response of Pokemon type",response);
-        return response;
-    }
-      
-       
-      
-       
-    return {
-     getAllPokemonData,
-     getAllPokemonTypeList
-     
-    }
-  }
-  
-  export default usePokemon
+  const getAllPokemonTypeList = useCallback(async () => {
+    const response = await getAllPokemonType(); 
+    return response;
+  }, []);
+
+  return {
+    getAllPokemonData,
+    getAllPokemonTypeList,
+  };
+};
+
+export default usePokemon;
