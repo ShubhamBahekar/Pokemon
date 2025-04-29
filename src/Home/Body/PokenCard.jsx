@@ -6,10 +6,9 @@ import { Box, Stack,useTheme, } from "@mui/material";
 import { useContext } from "react";
 import { pokemonContext } from "../PokemonProvider";
 const PokemonCard = () => {
-  const { filterPokemonData, pokemonType } = useContext(pokemonContext);
+  const { filterPokemonData } = useContext(pokemonContext);
   const theme = useTheme();
-  console.log("Poke", filterPokemonData);
-  console.log("Type", pokemonType);
+
   return (
     <Box display={"flex"} flexDirection={"row"} width={"100%"} height={"auto"}>
       <Box
