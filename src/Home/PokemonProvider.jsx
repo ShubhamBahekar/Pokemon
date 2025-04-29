@@ -15,6 +15,7 @@ export const PokemonProvider = ({ children }) => {
     getAllPokemonTypeList
      } = usePokemon();
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchPokemonData = async () => {
       setLoading(true);

@@ -1,13 +1,13 @@
 import { API_BASE_URL, API_METHODS } from "../config/apiConstants";
 
 const request = async (url, method = API_METHODS.GET, body = null) => {
-  console.log("method", method);
+  // console.log("method", method);
 
   const options = { method, ...(body && { body: body }) };
  
   try {
     const response = await fetch(`${API_BASE_URL}${url}`, options);
-     console.log("API.JSX response", response);
+    //  console.log("API.JSX response", response);
    
     return response.json();
   } catch (error) {
