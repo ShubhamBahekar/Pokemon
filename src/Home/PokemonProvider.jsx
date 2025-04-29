@@ -43,7 +43,7 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemonData();
    
     
-  }, []);
+  }, [getAllPokemonData,getAllPokemonTypeList]);
 
 
    
