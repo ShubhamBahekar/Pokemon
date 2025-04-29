@@ -17,9 +17,9 @@ import { Box } from "@mui/material";
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh", // takes full viewport height
-            width: "100vw",  // takes full viewport width
-            backgroundColor: "#f9f9f9", // optional, for visual clarity
+            height: "100vh", 
+            width: "100vw",  
+            backgroundColor: "white", 
           }}
         >
           <CircularProgress />
