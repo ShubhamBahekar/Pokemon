@@ -1,11 +1,16 @@
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./Home/HomePage";
+import PokemonProvider from "./Home/PokemonProvider";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <PokemonProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </PokemonProvider>
   );
-}
+};
 
 export default App;
