@@ -1,32 +1,35 @@
 import Header from "../Header/Header";
- import SearchBar from "./Body/SearchBar";
- import PokemonCard from "./Body/PokenCard";
- import CircularProgress from '@mui/material/CircularProgress';
-import { pokemonContext } from "./PokemonProvider";
+import SearchBar from "./Body/SearchBar";
+import PokemonCard from "./Body/PokemonLandingPage";
+import CircularProgress from "@mui/material/CircularProgress";
+import { pokemonContext } from "../PokemonContextProvider/PokemonContextProvider";
 import { useContext } from "react";
 import { Box } from "@mui/material";
- const Home = () => {
-
-  const {loading} = useContext(pokemonContext);
+const Home = () => {
+  const { loading } = useContext(pokemonContext);
 
   return (
     <>
-    {loading? (
+      {loading ? (
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh", 
-            width: "100vw",  
-            backgroundColor: "white", 
+            height: "100vh",
+            width: "100vw",
+            backgroundColor: "white",
           }}
         >
           <CircularProgress />
         </Box>
-      ) :(<><Header />
-       <SearchBar />
-     <PokemonCard/></>)}
+      ) : (
+        <>
+          <Header />
+          <SearchBar />
+          <PokemonCard />
+        </>
+      )}
     </>
   );
 };
