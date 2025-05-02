@@ -1,11 +1,11 @@
-import Header from "../Header/Header";
-import SearchBar from "./Body/SearchBar";
-import PokemonCard from "./Body/PokemonLandingPage";
+import Header from "../../Header/Header";
+import SearchBar from "./Components/SearchBar";
+import PokemonCard from "./Components/PaginationAndCard";
 import CircularProgress from "@mui/material/CircularProgress";
-import { pokemonContext } from "../PokemonContextProvider/PokemonContextProvider";
+import { pokemonContext } from "../../PokemonContextProvider/PokemonContextProvider";
 import { useContext } from "react";
 import { Box } from "@mui/material";
-const Home = () => {
+const PokemonsDisplay = () => {
   const { loading } = useContext(pokemonContext);
 
   return (
@@ -34,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PokemonsDisplay;
