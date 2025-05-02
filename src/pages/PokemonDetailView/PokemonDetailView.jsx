@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useContext } from "react";
 import { pokemonContext } from "../../PokemonContextProvider/PokemonContextProvider";
 import {Typography, Divider, Chip, Grid, Paper } from '@mui/material';
@@ -32,10 +32,6 @@ const Section = ({ title, items }) => (
 const PokemonDetailView = () => {
   const {evolutionSpecies,abilities,stats,moves } = useContext(pokemonContext);
 
-
-  useEffect(() => {
-    console.log("Abuli........", abilities);
-  }, [abilities]);
   return (
     <Box p={4}>
       <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>

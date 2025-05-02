@@ -1,6 +1,6 @@
 import { React, useState, useEffect, createContext } from "react";
 import usePokemon from "../hooks/usePokemon";
-
+import { useNavigate } from "react-router-dom"
 export const pokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
@@ -15,7 +15,7 @@ export const PokemonProvider = ({ children }) => {
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
 
   const { getAllPokemonData, getAllPokemonTypeList,getPokemonDetails } = usePokemon();
-
+  const navigate = useNavigate();
   
   const batchSize = 5;
   const fetchPokemonBatch = async (batch) => {
@@ -74,6 +74,8 @@ export const PokemonProvider = ({ children }) => {
 
 
 const fetchPokemonByName = async (pokemonName) => {
+
+        navigate("/pokemonview")
   try {
     const pokemonData = await getPokemonDetails(pokemonName); 
     console.log("Got Pokémon details:", pokemonData);
