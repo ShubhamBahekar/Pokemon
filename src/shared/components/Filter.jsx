@@ -13,6 +13,7 @@ const Filter = () => {
     "& .MuiOutlinedInput-notchedOutline": {
       borderColor: "green",
       borderRadius: "1rem",
+      borderWidth: "3px"
     },
     "&:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: "darkgreen",

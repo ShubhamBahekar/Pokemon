@@ -9,13 +9,15 @@ const SearchBar = () => {
     "& .MuiOutlinedInput-root": {
       borderRadius: "1rem",
       "& fieldset": {
-        borderColor: "green",
+        borderColor: "darkgreen",
+        borderWidth: "3px"
       },
       "&:hover fieldset": {
         borderColor: "darkgreen",
+        
       },
       "&.Mui-focused fieldset": {
-        borderColor: "green",
+        borderColor: "darkgreen",
       },
     },
   };
@@ -25,7 +27,7 @@ const SearchBar = () => {
       label="Search"
       variant="outlined"
       size="small"
-      sx={{ width: "30rem", ...searchTextField }}
+      sx={{ width: "30rem", ...searchTextField}}
       value={searchText}
       onChange={handlePokemonSearch}
     />

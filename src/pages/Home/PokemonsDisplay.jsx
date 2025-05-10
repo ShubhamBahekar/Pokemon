@@ -3,7 +3,7 @@ import Header from "../../Header/Header";
 // import PokemonCard from "./Components/PaginationAndCard";
 import SearchBar from "../../shared/components/SearchBar";
 import Filter from "../../shared/components/Filter";
-import PokemonCard from "../../shared/components/Card";
+import PokemonCard from "../../shared/components/Card/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import { pokemonContext } from "../../PokemonContextProvider/PokemonContextProvider";
 import { useContext, useEffect } from "react";
@@ -41,7 +41,7 @@ const PokemonsDisplay = () => {
           <CircularProgress />
         </Box>
       ) : (
-        <>
+        <Box sx={{ backgroundColor: "lavender" }}>
           <Header />
 
           <Box sx={{ marginTop: "1rem" }}>
@@ -70,7 +70,7 @@ const PokemonsDisplay = () => {
             itemsPerPageOptions={[10, 25, 50]}
             label="Pokémons per page:"
           />
-        </>
+        </Box>
       )}
     </>
   );

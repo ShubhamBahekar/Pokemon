@@ -1,6 +1,6 @@
 import { React, useState, useEffect, createContext } from "react";
 import usePokemon from "../hooks/usePokemon";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 export const pokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
@@ -8,15 +8,17 @@ export const PokemonProvider = ({ children }) => {
   const [allPokemonData, setAllPokemonData] = useState([]);
   const [pokemonType, setPokemonType] = useState([]);
   const [selectedType, setSelectedType] = useState(null);
-  const [loading, setLoading]       =     useState(true);
-  const [abilities,setAbilities]    =     useState([]);
-  const [stats,setStats]            =     useState([]);
-  const [moves, setMoves]           =     useState([]);
+  const [loading, setLoading] = useState(true);
+  const [abilities, setAbilities] = useState([]);
+  const [stats, setStats] = useState([]);
+  const [moves, setMoves] = useState([]);
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
+  const [favourite, setFavourite] = useState(false);
 
-  const { getAllPokemonData, getAllPokemonTypeList,getPokemonDetails } = usePokemon();
+  const { getAllPokemonData, getAllPokemonTypeList, getPokemonDetails } =
+    usePokemon();
   const navigate = useNavigate();
-  
+
   const batchSize = 5;
   const fetchPokemonBatch = async (batch) => {
     const batchData = await Promise.all(
@@ -25,7 +27,7 @@ export const PokemonProvider = ({ children }) => {
         const details = await res.json();
         return {
           name: pokemon.name,
-          image: details.sprites.front_default,
+          image: details.sprites.other.dream_world.front_default,
           id: details.id,
           types: details.types.map((typeInfo) => typeInfo.type.name),
         };
@@ -38,26 +40,22 @@ export const PokemonProvider = ({ children }) => {
     const fetchPokemonData = async () => {
       setLoading(true);
       try {
-      
         const data = await getAllPokemonData();
-        
-       
+
         const totalBatches = Math.ceil(data.results.length / batchSize);
         const allDetailedPokemon = [];
 
-        
         for (let i = 0; i < totalBatches; i++) {
           const batch = data.results.slice(i * batchSize, (i + 1) * batchSize);
-          const batchData = await fetchPokemonBatch(batch); 
-          allDetailedPokemon.push(...batchData); 
+          const batchData = await fetchPokemonBatch(batch);
+          allDetailedPokemon.push(...batchData);
         }
 
-        setAllPokemonData(allDetailedPokemon); 
+        setAllPokemonData(allDetailedPokemon);
 
         const responseData = await getAllPokemonTypeList();
         const names = responseData.results.map((type) => type.name);
         setPokemonType(names);
-
       } catch (error) {
         console.error("Error in fetching data", error);
       } finally {
@@ -67,53 +65,45 @@ export const PokemonProvider = ({ children }) => {
 
     fetchPokemonData();
   }, [getAllPokemonData, getAllPokemonTypeList]);
-  
 
+  const fetchPokemonByName = async (pokemonName) => {
+    navigate("/pokemonview");
+    try {
+      const pokemonData = await getPokemonDetails(pokemonName);
+      console.log("Got Pokémon details:", pokemonData);
 
+      const dataOfAbility =
+        pokemonData?.abilities?.map((item) => item.ability?.name) || [];
+      const dataOfStats =
+        pokemonData?.stats?.map((item) => item.stat.name) || [];
+      const dataOfMoves =
+        pokemonData?.moves?.map((item) => item.move.name) || [];
+      setAbilities(dataOfAbility);
+      setStats(dataOfStats);
+      setMoves(dataOfMoves);
 
+      const speciesRes = await fetch(pokemonData.species.url);
+      const speciesData = await speciesRes.json();
+      const evoRes = await fetch(speciesData.evolution_chain.url);
+      const evoData = await evoRes.json();
 
+      const getSpeciesNames = (node) => {
+        const names = [node.species.name];
+        node.evolves_to.forEach((evo) => names.push(...getSpeciesNames(evo)));
+        return names;
+      };
 
-const fetchPokemonByName = async (pokemonName) => {
+      const speciesList = getSpeciesNames(evoData.chain);
+      setEvolutionSpecies(speciesList);
+    } catch (error) {
+      console.error("Failed to fetch evolution chain:", error);
+      setEvolutionSpecies([]);
+      setAbilities([]);
+      setStats([]);
+      setMoves([]);
+    }
+  };
 
-        navigate("/pokemonview")
-  try {
-    const pokemonData = await getPokemonDetails(pokemonName); 
-    console.log("Got Pokémon details:", pokemonData);
-
-    const dataOfAbility = pokemonData?.abilities?.map((item) => item.ability?.name) || [];
-    const dataOfStats = pokemonData?.stats?.map((item)=>item.stat.name) || [];
-    const dataOfMoves = pokemonData?.moves?.map((item)=>item.move.name) || [];
-    setAbilities(dataOfAbility);
-    setStats(dataOfStats);
-    setMoves(dataOfMoves);
-
-
-    const speciesRes = await fetch(pokemonData.species.url);
-    const speciesData = await speciesRes.json();
-    const evoRes = await fetch(speciesData.evolution_chain.url);
-    const evoData = await evoRes.json();
-    
-
-    const getSpeciesNames = (node) => {
-      const names = [node.species.name];
-      node.evolves_to.forEach(evo => names.push(...getSpeciesNames(evo)));
-      return names;
-    };
-
-    const speciesList = getSpeciesNames(evoData.chain);
-    setEvolutionSpecies(speciesList);
-  } catch (error) {
-    console.error("Failed to fetch evolution chain:", error);
-    setEvolutionSpecies([]);
-    setAbilities([]);
-    setStats([]);
-    setMoves([]);
-  }
-};
-
-
-
-  
   const handleTypeChange = (e) => {
     const typeName = e.target.value;
     setSelectedType(typeName);
@@ -133,6 +123,11 @@ const fetchPokemonByName = async (pokemonName) => {
     return matchesType && matchesSearch;
   });
 
+
+const handleToggleFavouriteIcon = () =>{
+   setFavourite((prev)=>!prev);
+}
+
   return (
     <pokemonContext.Provider
       value={{
@@ -148,6 +143,8 @@ const fetchPokemonByName = async (pokemonName) => {
         abilities,
         stats,
         moves,
+        favourite,
+        handleToggleFavouriteIcon
       }}
     >
       {children}
