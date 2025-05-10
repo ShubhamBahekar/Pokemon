@@ -1,17 +1,17 @@
 import Header from "../../Header/Header";
-// import SearchBar from "./Components/SearchBar";
-// import PokemonCard from "./Components/PaginationAndCard";
 import SearchBar from "../../shared/components/SearchBar";
 import Filter from "../../shared/components/Filter";
 import PokemonCard from "../../shared/components/Card/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import { pokemonContext } from "../../PokemonContextProvider/PokemonContextProvider";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { Box, Stack } from "@mui/material";
 import usePaginationLogic from "../../shared/components/Pagination/usePaginationLogic";
 import PaginationController from "../../shared/components/Pagination/PaginationController";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
 const PokemonsDisplay = () => {
-  const { loading, filterPokemonData, fetchPokemonByName } =
+  const { loading, filterPokemonData, fetchPokemonByName,handleFavouriteList } =
     useContext(pokemonContext);
   const {
     page,
@@ -21,10 +21,7 @@ const PokemonsDisplay = () => {
     paginatedData,
   } = usePaginationLogic({ filterPokemonData, initialPerPage: 10 });
 
-  useEffect(() => {
-    console.log("Paginated Data", paginatedData);
-  }, [paginatedData]);
-
+ 
   return (
     <>
       {loading ? (
@@ -41,7 +38,7 @@ const PokemonsDisplay = () => {
           <CircularProgress />
         </Box>
       ) : (
-        <Box sx={{ backgroundColor: "lavender" }}>
+        <Box>
           <Header />
 
           <Box sx={{ marginTop: "1rem" }}>
@@ -53,6 +50,7 @@ const PokemonsDisplay = () => {
             >
               <SearchBar />
               <Filter />
+              <FavoriteIcon fontSize="large" sx={{ color: "red",cursor:"pointer" }} onClick={()=>handleFavouriteList()}/>
             </Stack>
           </Box>
 

@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Grid, TablePagination } from '@mui/material';
+import {useState } from 'react';
 
 const usePaginationLogic = ({filterPokemonData=[],initialPerPage = 10}) =>{
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialPerPage);
 
-  useEffect(()=>{
-   console.log("Data...",filterPokemonData);
-  },[filterPokemonData])
 
 
   const handleChangePage = (_, newPage) => {

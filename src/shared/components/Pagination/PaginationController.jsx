@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, TablePagination, useMediaQuery, useTheme } from "@mui/material";
 
 const PaginationController = ({

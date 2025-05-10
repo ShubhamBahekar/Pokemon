@@ -16,10 +16,9 @@ export const ParentBox = styled(Box)(() => ({
 
 export const CardTag = styled(Card)(({ theme }) => ({
   width: "100%",
-  marginTop: "1.3rem",
-  border: "2px solid pink",
+  marginTop: "3%",
   borderRadius: "10%",
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
   backgroundColor: theme.palette.background.paper,
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   "&:hover": {
@@ -27,6 +26,8 @@ export const CardTag = styled(Card)(({ theme }) => ({
     boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
   },
   position: "relative",
+  textTransform:"capitalize",
+  
   "&:hover .image-wrapper": {
     transform: "rotate(180deg) scale(1.03)",
     borderRadius: "0 0 50% 50%",
@@ -60,3 +61,6 @@ export const ImageWrapper = styled(Box)(() => ({
  
   position: "absolute",
 }));
+
+
+

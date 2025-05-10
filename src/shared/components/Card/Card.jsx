@@ -1,17 +1,16 @@
 import * as React from "react";
 // import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { Box, Grid, Stack, useTheme } from "@mui/material";
+import { Box,Stack} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { pokemonContext } from "../../../PokemonContextProvider/PokemonContextProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import Chip from "@mui/material/Chip";
 import { ParentBox, CardTag , ImageWrapper} from "./Card.styles";
 
 const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
-  const { favourite, handleToggleFavouriteIcon } = useContext(pokemonContext);
+  const { favourite, handleToggleFavouriteIcon ,favouriteList} = useContext(pokemonContext);
   
 
 
@@ -28,7 +27,7 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
             sx={{ top: 0, right: 5, cursor: "pointer" ,padding:"5px"}}
             onClick={(e) => {
               e.stopPropagation();
-              handleToggleFavouriteIcon(pokemon);
+              handleToggleFavouriteIcon(pokemon.id);
             }}
           >
             {favourite ? (
@@ -47,8 +46,8 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
                 height: "200px",
                 width: "200px",
                 objectFit: "contain",
-                transform: "rotate(0deg)",  // Default rotation of 0
-                transition: "transform 0.3s ease",  // Smooth transition for rotation
+                transform: "rotate(0deg)",  
+                transition: "transform 0.3s ease", 
                 pointerEvents: "none",
               }}
               

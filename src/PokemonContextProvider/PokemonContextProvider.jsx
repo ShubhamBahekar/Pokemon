@@ -14,6 +14,7 @@ export const PokemonProvider = ({ children }) => {
   const [moves, setMoves] = useState([]);
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
   const [favourite, setFavourite] = useState(false);
+  const [favouriteList, setFavouriteList] = useState([]);
 
   const { getAllPokemonData, getAllPokemonTypeList, getPokemonDetails } =
     usePokemon();
@@ -124,8 +125,13 @@ export const PokemonProvider = ({ children }) => {
   });
 
 
-const handleToggleFavouriteIcon = () =>{
+const handleToggleFavouriteIcon = (id) =>{
    setFavourite((prev)=>!prev);
+   setFavouriteList((prev)=>[...prev,id]);
+}
+
+const handleFavouriteList = async() =>{
+   navigate("/favourite");
 }
 
   return (
@@ -144,7 +150,8 @@ const handleToggleFavouriteIcon = () =>{
         stats,
         moves,
         favourite,
-        handleToggleFavouriteIcon
+        handleToggleFavouriteIcon,
+        handleFavouriteList
       }}
     >
       {children}
