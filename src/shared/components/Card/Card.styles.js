@@ -38,6 +38,7 @@ export const CardTag = styled(Card)(({ theme }) => ({
 
   [theme.breakpoints.up("xs")]: {
     maxWidth: "100%",
+    marginTop: "10%",
   },
   [theme.breakpoints.up("sm")]: {
     maxWidth: "45%",
