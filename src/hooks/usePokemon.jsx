@@ -3,8 +3,6 @@ import { useCallback } from "react";
 
 const usePokemon = () => {
 
- 
-
   const getAllPokemonData = useCallback(async () => {
     const response = await getAllPokemon();
     return response;
@@ -19,6 +17,7 @@ const usePokemon = () => {
   
  
 const response = await getPokemon(data); 
+console.log("PDetails...",response);
 return response;
  },[])
 

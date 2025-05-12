@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pokemonview" element={<PokemonDetailView />}/>
-        <Route path="favourite" element={<Favourite/>}/>
+        <Route path="/favourite" element={<Favourite/>}/>
       </Routes>
     </PokemonProvider>
   );

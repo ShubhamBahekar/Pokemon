@@ -18,14 +18,12 @@ export const CardTag = styled(Card)(({ theme }) => ({
   width: "100%",
   marginTop: "3%",
   borderRadius: "10%",
-  boxShadow:
-    "rgba(0, 0, 0, 0.4) 0px 2px 4px rgba(0, 0, 0, 0.3) 0px 7px 13px -3px rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+  boxShadow:"rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px",
   backgroundColor: theme.palette.background.paper,
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   "&:hover": {
     transform: "translateY(-5px) scale(1.05)",
-    boxShadow:
-      "rgba(0, 0, 0, 0.4) 0px 2px 4px rgba(0, 0, 0, 0.3) 0px 7px 13px -3px rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+      boxShadow:"rgba(0, 0, 0, 0.56) 0px 22px 70px 4px",
   },
   position: "relative",
   textTransform: "capitalize",

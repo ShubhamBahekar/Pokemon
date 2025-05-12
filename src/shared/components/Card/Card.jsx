@@ -19,8 +19,7 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
       {pokemonData.map((pokemon, index) => (
         <CardTag
           key={index}
-          onClick={onPokemonClicked}
-          
+          onClick={()=>onPokemonClicked(pokemon.id)}   
         >
           <Box
             position={"absolute"}
