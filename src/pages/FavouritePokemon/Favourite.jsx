@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React  from 'react'
 import PokemonCard from '../../shared/components/Card/Card'
 import { Box } from '@mui/material'
 import { useContext } from 'react'
@@ -9,10 +9,6 @@ const Favourite = () => {
 const {favouriteList,filterPokemonData} = useContext(pokemonContext);
    const favouritePokemon = filterPokemonData.filter((pokemon)=>favouriteList.includes((pokemon.id)))
 
-useEffect(()=>{
-console.log("favouriteList:", favouriteList)
-     console.log("favouritePokemon:", favouritePokemon)
-},[])
 
   return (
     <Box>

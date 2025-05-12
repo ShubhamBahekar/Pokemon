@@ -10,7 +10,7 @@ import Chip from "@mui/material/Chip";
 import { ParentBox, CardTag , ImageWrapper} from "./Card.styles";
 
 const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
-  const { favourite, handleToggleFavouriteIcon ,favouriteList} = useContext(pokemonContext);
+  const {  handleToggleFavouriteIcon ,favouriteList} = useContext(pokemonContext);
   
 
 

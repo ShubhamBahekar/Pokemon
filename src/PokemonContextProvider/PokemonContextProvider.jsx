@@ -67,6 +67,14 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemonData();
   }, [getAllPokemonData, getAllPokemonTypeList]);
 
+
+   useEffect(() => {
+    const Ids = JSON.parse(localStorage.getItem("favouritePokemonIds"));
+    if (Ids) {
+      setFavouriteList(Ids);
+    }
+  }, []);
+
   const fetchPokemonByName = async (pokemonName) => {
     navigate("/pokemonview");
     try {
@@ -132,11 +140,14 @@ const handleToggleFavouriteIcon = (id) =>{
     {   
   if(prev.includes(id))
   {
-    return prev.filter((favId)=> favId !== id );
-     
-
+   const data =  prev.filter((favId)=> favId !== id );
+     localStorage.setItem("favouritePokemonIds",JSON.stringify(data));
+ return data;
   }else{
-     return [...prev,id];
+
+  const  data =  [...prev,id];
+     localStorage.setItem("favouritePokemonIds",JSON.stringify(data));
+      return data;
   }
   }
 )
