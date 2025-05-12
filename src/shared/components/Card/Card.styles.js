@@ -18,20 +18,22 @@ export const CardTag = styled(Card)(({ theme }) => ({
   width: "100%",
   marginTop: "3%",
   borderRadius: "10%",
-  boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+  boxShadow:
+    "rgba(0, 0, 0, 0.4) 0px 2px 4px rgba(0, 0, 0, 0.3) 0px 7px 13px -3px rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
   backgroundColor: theme.palette.background.paper,
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   "&:hover": {
     transform: "translateY(-5px) scale(1.05)",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+    boxShadow:
+      "rgba(0, 0, 0, 0.4) 0px 2px 4px rgba(0, 0, 0, 0.3) 0px 7px 13px -3px rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
   },
   position: "relative",
-  textTransform:"capitalize",
-  
+  textTransform: "capitalize",
+
   "&:hover .image-wrapper": {
     transform: "rotate(180deg) scale(1.03)",
     borderRadius: "0 0 50% 50%",
-      transition: "all 0.3s ease",
+    transition: "all 0.8s ease",
   },
 
   [theme.breakpoints.up("xs")]: {
@@ -46,6 +48,7 @@ export const CardTag = styled(Card)(({ theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     maxWidth: "23%",
+    margin:"3% 1% 0% 1%"
   },
 }));
 
@@ -58,9 +61,6 @@ export const ImageWrapper = styled(Box)(() => ({
   backgroundColor: "darkseagreen",
   borderRadius: "0 0 50% 50% ",
   transform: "rotate(0deg)",
- 
+
   position: "absolute",
 }));
-
-
-

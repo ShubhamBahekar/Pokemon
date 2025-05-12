@@ -30,11 +30,9 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
               handleToggleFavouriteIcon(pokemon.id);
             }}
           >
-            {favourite ? (
-              <FavoriteIcon fontSize="large" sx={{ color: "red" }} />
-            ) : (
-              <FavoriteBorderIcon fontSize="large" sx={{ color: "darkgoldenrod" }} />
-            )}
+            {favouriteList.includes(pokemon.id)? (<FavoriteIcon key={pokemon.id}
+            fontSize="large" sx={{ color: "red" }} />): (<FavoriteBorderIcon key={pokemon.id} fontSize="large" sx={{ color: "darkgoldenrod" }} />)
+            } 
           </Box>
           <ImageWrapper className="image-wrapper">
           </ImageWrapper>

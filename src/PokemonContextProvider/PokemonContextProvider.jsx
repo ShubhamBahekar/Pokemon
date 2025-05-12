@@ -127,7 +127,19 @@ export const PokemonProvider = ({ children }) => {
 
 const handleToggleFavouriteIcon = (id) =>{
    setFavourite((prev)=>!prev);
-   setFavouriteList((prev)=>[...prev,id]);
+
+   setFavouriteList((prev)=>
+    {   
+  if(prev.includes(id))
+  {
+    return prev.filter((favId)=> favId !== id );
+     
+
+  }else{
+     return [...prev,id];
+  }
+  }
+)
 }
 
 const handleFavouriteList = async() =>{
@@ -151,7 +163,8 @@ const handleFavouriteList = async() =>{
         moves,
         favourite,
         handleToggleFavouriteIcon,
-        handleFavouriteList
+        handleFavouriteList,
+        favouriteList
       }}
     >
       {children}
