@@ -4,65 +4,52 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate,useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import { IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 function Header() {
- 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isFavoritePage = location.pathname === "/favourite"
+  const isFavoritePage = location.pathname === "/favourite";
 
   return (
-    <AppBar position="static" sx={{bgcolor:"lightslategray"}}>
+    <AppBar position="static" sx={{ bgcolor: "lightslategray" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              flexGrow: 1, 
             }}
           >
-            Pokemon
-          </Typography>
-          <IconButton onClick={()=>navigate("/")}  size="large">
-         {isFavoritePage ? <HomeIcon fontSize='medium' sx={{color:"white"}}/> : null }
-         </IconButton>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Pokemon
-          </Typography>
-          
-         
+            <AdbIcon sx={{ mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Pokemon
+            </Typography>
+            {isFavoritePage && (
+              <IconButton onClick={() => navigate("/")} size="large">
+                <HomeIcon sx={{ color: "white", ml: 1 }} />
+              </IconButton>
+            )}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default Header;
