@@ -41,7 +41,7 @@ const PokemonsDisplay = () => {
         <Box bgcolor={"#3D3539"}>
           <Header />
 
-          <Box sx={{ marginTop: "1rem",display:"flex",flexDirection:"column", justifyContent:"space-between", }}>
+          <Box sx={{ marginTop: "1rem" }}>
             <Stack
               direction={"row"}
               justifyContent="center"

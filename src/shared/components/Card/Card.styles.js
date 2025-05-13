@@ -9,6 +9,7 @@ export const ParentBox = styled(Box)(() => ({
   alignItems: "center",
   width: "100%",
   flexWrap: "wrap",
+  marginTop:"1rem",
   marginBottom:"1rem",
   height: "auto",
   position: "relative",
