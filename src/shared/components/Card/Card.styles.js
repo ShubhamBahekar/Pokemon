@@ -58,7 +58,7 @@ export const ImageWrapper = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "darkseagreen",
+  backgroundColor: "#51B55B",
   borderRadius: "0 0 50% 50% ",
   transform: "rotate(0deg)",
 
