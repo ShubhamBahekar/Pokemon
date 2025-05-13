@@ -12,7 +12,7 @@ const {favouriteList,filterPokemonData} = useContext(pokemonContext);
 
 
   return (
-    <Box sx={{backgroundColor:"#3D3539"}}>
+    <Box sx={{backgroundColor:"#3D3539"}} display={"flex"} flexDirection={"column"} justifyContent={"space-between"}>
       <Box>
           <Header/>
       </Box>

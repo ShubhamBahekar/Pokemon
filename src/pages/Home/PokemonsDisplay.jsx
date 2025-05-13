@@ -38,7 +38,7 @@ const PokemonsDisplay = () => {
           <CircularProgress />
         </Box>
       ) : (
-        <Box bgcolor={"#3D3539"}>
+        <Box bgcolor={"#3D3539"} display={"flex"}>
           <Header />
 
           <Box sx={{ marginTop: "1rem" }}>
