@@ -50,7 +50,7 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
               
             />
        </Box>
-          <CardContent sx={{ backgroundColor: "white", color: "pink" }}>
+          <CardContent sx={{color: "pink" }} >
             <Stack
               direction="column"
               alignItems="center"
@@ -60,7 +60,7 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
               <Chip
                 label={pokemon.name}
                 variant="outlined"
-                sx={{ color: "black", fontSize: "1.5rem" ,fontWeight:700}}
+                sx={{ color: "white", fontSize: "1.5rem" ,fontWeight:700}}
               />
 
               <Chip
@@ -76,7 +76,7 @@ const PokemonCard = ({ pokemonData, onPokemonClicked }) => {
               <Chip
                 label={pokemon.id}
                 variant="outlined"
-                sx={{ color: "black", fontSize: "1.5rem" }}
+                sx={{ color: "white", fontSize: "1.5rem" }}
               />
             </Stack>
           </CardContent>

@@ -9,22 +9,35 @@ const Filter = () => {
   const { pokemonType, handleTypeChange, selectedType } =
     useContext(pokemonContext);
 
-  const selectDropDown = {
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "green",
-      borderRadius: "1rem",
-      borderWidth: "3px"
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "darkgreen",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "green",
-    },
-  };
+const selectDropDown = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "white",
+    borderRadius: "1rem",
+    borderWidth: "3px",
+  },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "white",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "white",
+  },
+  "& .MuiInputBase-input": {
+    color: "white",
+  },
+  "& .MuiInputLabel-root": {
+    color: "white",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "white",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "white",
+  }
+};
+
 
   return (
-    <FormControl sx={{ width: "10rem" }} size="small">
+    <FormControl sx={{ width: "10rem",...selectDropDown }} size="small">
       <InputLabel id="demo-simple-select-label">Filter</InputLabel>
       <Select
         labelId="demo-simple-select-label"

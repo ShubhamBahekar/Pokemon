@@ -6,21 +6,28 @@ const SearchBar = () => {
   const { handlePokemonSearch, searchText } = useContext(pokemonContext);
 
   const searchTextField = {
-    "& .MuiOutlinedInput-root": {
-      borderRadius: "1rem",
-      "& fieldset": {
-        borderColor: "darkgreen",
-        borderWidth: "3px"
-      },
-      "&:hover fieldset": {
-        borderColor: "darkgreen",
-        
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "darkgreen",
-      },
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "1rem",
+     color:"white",
+    "& fieldset": {
+      borderColor: "white",
+      borderWidth: "3px"
     },
-  };
+    "&:hover fieldset": {
+      borderColor: "white",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "white",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "white", 
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "white", 
+  },
+};
+
 
   return (
     <TextField

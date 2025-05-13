@@ -25,10 +25,6 @@ const Section = ({ title, items }) => (
 );
 
 
-
-
-
-
 const PokemonDetailView = () => {
   const {evolutionSpecies,abilities,stats,moves } = useContext(pokemonContext);
 
