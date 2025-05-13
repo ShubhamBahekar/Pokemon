@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import { useContext } from 'react'
 import { pokemonContext } from '../../PokemonContextProvider/PokemonContextProvider'
 import Header from "../../Header/Header"
-
+import { NoContentMessage, DisplayCards } from './FavouritePokemon.styles'
 const Favourite = () => {
 
 const {favouriteList,filterPokemonData} = useContext(pokemonContext);
@@ -12,17 +12,17 @@ const {favouriteList,filterPokemonData} = useContext(pokemonContext);
 
 
   return (
-    <Box>
+    <Box sx={{backgroundColor:"#3D3539"}}>
       <Box>
           <Header/>
       </Box>
 
-      <Box>
-        {favouritePokemon.length>0 ?(<PokemonCard  pokemonData={favouritePokemon}  />) : <Box>No Favourite Pokemon Selected</Box>} 
-      </Box>
+      <DisplayCards>
+        {favouritePokemon.length>0 ?(<PokemonCard  pokemonData={favouritePokemon}  />) : <NoContentMessage >No Favourite Pokemon Selected</NoContentMessage >} 
+      </DisplayCards>
        
      
-   </Box>
+   </Box >
   )
 }
 
