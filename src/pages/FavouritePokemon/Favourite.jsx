@@ -12,12 +12,12 @@ const {favouriteList,filterPokemonData} = useContext(pokemonContext);
 
 
   return (
-    <Box sx={{backgroundColor:"#3D3539"}} display={"flex"} flexDirection={"column"} justifyContent={"space-between"}>
+    <Box sx={{backgroundColor:"#3D3539"}}>
       <Box>
           <Header/>
       </Box>
 
-      <DisplayCards>
+      <DisplayCards >
         {favouritePokemon.length>0 ?(<PokemonCard  pokemonData={favouritePokemon}  />) : <NoContentMessage >No Favourite Pokemon Selected</NoContentMessage >} 
       </DisplayCards>
        

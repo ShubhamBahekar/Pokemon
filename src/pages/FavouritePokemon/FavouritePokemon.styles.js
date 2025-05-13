@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material"
 
 
 export const DisplayCards = styled(Box)(()=>({
-    height:"100vh",
+    minHeight:"38rem",
     display:"flex",
     justifyContent:"flex-start",
     alignItems:"center",
