@@ -13,10 +13,8 @@ const usePokemon = () => {
     return response;
   }, []);
 
- const getPokemonDetails = useCallback(async(data)=>{
-  
- 
-const response = await getPokemon(data); 
+ const getPokemonDetails = useCallback(async(id)=>{
+const response = await getPokemon(id); 
 console.log("PDetails...",response);
 return response;
  },[])

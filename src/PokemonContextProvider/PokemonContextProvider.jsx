@@ -13,6 +13,8 @@ export const PokemonProvider = ({ children }) => {
   const [stats, setStats] = useState([]);
   const [moves, setMoves] = useState([]);
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
+  const [pokemonImage, setPokemonImage] = useState(null);
+  const [speciesEvolutionImages, setEvolutionSpeciesImages] = useState([]);
   const [favourite, setFavourite] = useState(false);
   const [favouriteList, setFavouriteList] = useState([]);
 
@@ -67,42 +69,53 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemonData();
   }, [getAllPokemonData, getAllPokemonTypeList]);
 
-
-   useEffect(() => {
+  useEffect(() => {
     const Ids = JSON.parse(localStorage.getItem("favouritePokemonIds"));
     if (Ids) {
       setFavouriteList(Ids);
     }
   }, []);
 
-  const fetchPokemonByName = async (pokemonName) => {
-    navigate("/pokemonview");
+  const fetchPokemonById = async (id) => {
     try {
-      const pokemonData = await getPokemonDetails(pokemonName);
+      const pokemonData = await getPokemonDetails(id);
       console.log("Got Pokémon details:", pokemonData);
 
       const dataOfAbility =
-        pokemonData?.abilities?.map((item) => item.ability?.name) || [];
-      const dataOfStats =
-        pokemonData?.stats?.map((item) => item.stat.name) || [];
+        pokemonData?.abilities?.map((item) => item.ability?.name) || []; 
+      const nameInStats =
+        pokemonData?.stats?.map((item) =>({name:item.stat.name,value:item.base_stat})) || [];
       const dataOfMoves =
         pokemonData?.moves?.map((item) => item.move.name) || [];
+      const dataOfImage = pokemonData?.sprites.other.dream_world.front_default;
+      
       setAbilities(dataOfAbility);
-      setStats(dataOfStats);
+      setStats(nameInStats);
       setMoves(dataOfMoves);
+      setPokemonImage(dataOfImage);
 
       const speciesRes = await fetch(pokemonData.species.url);
       const speciesData = await speciesRes.json();
       const evoRes = await fetch(speciesData.evolution_chain.url);
       const evoData = await evoRes.json();
+      const getAllSpecies = (node) => {
+        // debugger;
 
-      const getSpeciesNames = (node) => {
         const names = [node.species.name];
-        node.evolves_to.forEach((evo) => names.push(...getSpeciesNames(evo)));
-        return names;
+        getSpeciesNames(node?.evolves_to, names);
+        return names
+      };
+      const getSpeciesNames = (evolves_to, names) => {
+        // debugger;
+        evolves_to.forEach((evo) => {
+          names.push(evo.species.name);
+          if (evo?.evolves_to.length > 0) {
+            getSpeciesNames(evo?.evolves_to, names);
+          }
+        });
       };
 
-      const speciesList = getSpeciesNames(evoData.chain);
+      const speciesList = getAllSpecies(evoData.chain);
       setEvolutionSpecies(speciesList);
     } catch (error) {
       console.error("Failed to fetch evolution chain:", error);
@@ -132,30 +145,25 @@ export const PokemonProvider = ({ children }) => {
     return matchesType && matchesSearch;
   });
 
+  const handleToggleFavouriteIcon = (id) => {
+    setFavourite((prev) => !prev);
 
-const handleToggleFavouriteIcon = (id) =>{
-   setFavourite((prev)=>!prev);
+    setFavouriteList((prev) => {
+      if (prev.includes(id)) {
+        const data = prev.filter((favId) => favId !== id);
+        localStorage.setItem("favouritePokemonIds", JSON.stringify(data));
+        return data;
+      } else {
+        const data = [...prev, id];
+        localStorage.setItem("favouritePokemonIds", JSON.stringify(data));
+        return data;
+      }
+    });
+  };
 
-   setFavouriteList((prev)=>
-    {   
-  if(prev.includes(id))
-  {
-   const data =  prev.filter((favId)=> favId !== id );
-     localStorage.setItem("favouritePokemonIds",JSON.stringify(data));
- return data;
-  }else{
-
-  const  data =  [...prev,id];
-     localStorage.setItem("favouritePokemonIds",JSON.stringify(data));
-      return data;
-  }
-  }
-)
-}
-
-const handleFavouriteList = async() =>{
-   navigate("/favourite");
-}
+  const handleFavouriteList = async () => {
+    navigate("/favourite");
+  };
 
   return (
     <pokemonContext.Provider
@@ -167,7 +175,7 @@ const handleFavouriteList = async() =>{
         handlePokemonSearch,
         searchText,
         loading,
-        fetchPokemonByName,
+        fetchPokemonById,
         evolutionSpecies,
         abilities,
         stats,
@@ -175,7 +183,8 @@ const handleFavouriteList = async() =>{
         favourite,
         handleToggleFavouriteIcon,
         handleFavouriteList,
-        favouriteList
+        favouriteList,
+        pokemonImage
       }}
     >
       {children}

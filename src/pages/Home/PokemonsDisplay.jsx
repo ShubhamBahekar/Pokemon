@@ -9,10 +9,12 @@ import { Box, Stack } from "@mui/material";
 import usePaginationLogic from "../../shared/components/Pagination/usePaginationLogic";
 import PaginationController from "../../shared/components/Pagination/PaginationController";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate } from "react-router-dom";
 
 const PokemonsDisplay = () => {
-  const { loading, filterPokemonData, fetchPokemonByName,handleFavouriteList } =
+  const { loading, filterPokemonData, fetchPokemonById,handleFavouriteList } =
     useContext(pokemonContext);
+    const navigate = useNavigate();
   const {
     page,
     rowsPerPage,
@@ -21,6 +23,9 @@ const PokemonsDisplay = () => {
     paginatedData,
   } = usePaginationLogic({ filterPokemonData, initialPerPage: 10 });
 
+  const handlePokemonClicked =(id)=>{
+       navigate(`pokemonview/${id}`)
+  }
  
   return (
     <>
@@ -56,7 +61,7 @@ const PokemonsDisplay = () => {
 
           <PokemonCard
             pokemonData={paginatedData}
-            onPokemonClicked={fetchPokemonByName}
+            onPokemonClicked={handlePokemonClicked}
           />
 
           <PaginationController
