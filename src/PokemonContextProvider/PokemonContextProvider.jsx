@@ -12,9 +12,11 @@ export const PokemonProvider = ({ children }) => {
   const [abilities, setAbilities] = useState([]);
   const [stats, setStats] = useState([]);
   const [moves, setMoves] = useState([]);
+  const [movesInDetail, setMovesInDetail] = useState(false);
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
   const [pokemonImage, setPokemonImage] = useState(null);
   const [speciesEvolutionImages, setEvolutionSpeciesImages] = useState([]);
+  const [pokemonName,setPokemonName] = useState([]);
   const [favourite, setFavourite] = useState(false);
   const [favouriteList, setFavouriteList] = useState([]);
 
@@ -88,11 +90,13 @@ export const PokemonProvider = ({ children }) => {
       const dataOfMoves =
         pokemonData?.moves?.map((item) => item.move.name) || [];
       const dataOfImage = pokemonData?.sprites.other.dream_world.front_default;
-      
+      const nameOfPokemon = pokemonData?.name;
+     
       setAbilities(dataOfAbility);
       setStats(nameInStats);
       setMoves(dataOfMoves);
       setPokemonImage(dataOfImage);
+      setPokemonName(nameOfPokemon);
 
       const speciesRes = await fetch(pokemonData.species.url);
       const speciesData = await speciesRes.json();
@@ -165,6 +169,10 @@ export const PokemonProvider = ({ children }) => {
     navigate("/favourite");
   };
 
+  const handleDetailMoves = () =>{
+    setMovesInDetail((prev)=> !prev);
+  }
+
   return (
     <pokemonContext.Provider
       value={{
@@ -180,11 +188,14 @@ export const PokemonProvider = ({ children }) => {
         abilities,
         stats,
         moves,
+        movesInDetail,
         favourite,
+        pokemonName,
         handleToggleFavouriteIcon,
         handleFavouriteList,
         favouriteList,
-        pokemonImage
+        pokemonImage,
+        handleDetailMoves
       }}
     >
       {children}
