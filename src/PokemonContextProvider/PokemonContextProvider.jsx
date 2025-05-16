@@ -185,16 +185,23 @@ export const PokemonProvider = ({ children }) => {
         loading,
         fetchPokemonById,
         evolutionSpecies,
+        setEvolutionSpecies,
         abilities,
+        setAbilities,
         stats,
+        setStats,
         moves,
+        setMoves,
         movesInDetail,
+        setMovesInDetail,
         favourite,
         pokemonName,
+        setPokemonName,
         handleToggleFavouriteIcon,
         handleFavouriteList,
         favouriteList,
         pokemonImage,
+        setPokemonImage,
         handleDetailMoves
       }}
     >
