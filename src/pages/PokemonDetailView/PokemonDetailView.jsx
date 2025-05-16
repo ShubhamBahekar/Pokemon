@@ -19,7 +19,6 @@ const {pokemonImage,evolutionSpecies,abilities,stats,moves,movesInDetail,pokemon
   if(id)
   {
     fetchPokemonById(id);
-    console.log("name Of Pokemon",pokemonName);
   }
   },[id])
 
