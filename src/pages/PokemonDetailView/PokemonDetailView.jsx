@@ -23,8 +23,6 @@ const {pokemonImage,evolutionSpecies,abilities,stats,moves,movesInDetail,pokemon
   },[id])
 
 
-
-
   return (
    <ParentTag  sx={{display:"flex",width:"100vw" ,height:"100vh", justifyContent:"center",alignItems:"center",background:"linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620);" }}>
     

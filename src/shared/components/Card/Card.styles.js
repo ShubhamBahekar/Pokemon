@@ -58,7 +58,8 @@ export const ImageWrapper = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#51B55B",
+  // backgroundColor: "#51B55B",
+  background:"linear-gradient(to right top, #291514, #3f181f, #531a31, #651d49, #702668)",
   borderRadius: "0 0 50% 50% ",
   transform: "rotate(0deg)",
 
