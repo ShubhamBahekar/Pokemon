@@ -12,7 +12,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 
 const PokemonsDisplay = () => {
-  const { loading, filterPokemonData, fetchPokemonById,handleFavouriteList } =
+  const { loading, filterPokemonData, handleFavouriteList } =
     useContext(pokemonContext);
     const navigate = useNavigate();
   const {

@@ -15,7 +15,7 @@ export const PokemonProvider = ({ children }) => {
   const [movesInDetail, setMovesInDetail] = useState(false);
   const [evolutionSpecies, setEvolutionSpecies] = useState([]);
   const [pokemonImage, setPokemonImage] = useState(null);
-  const [speciesEvolutionImages, setEvolutionSpeciesImages] = useState([]);
+ 
   const [pokemonName,setPokemonName] = useState([]);
   const [favourite, setFavourite] = useState(false);
   const [favouriteList, setFavouriteList] = useState([]);
