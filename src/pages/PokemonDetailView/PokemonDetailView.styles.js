@@ -4,6 +4,15 @@ import {Paper} from "@mui/material";
 
 
 
+export const ParentTag = styled(Box)(()=>({
+  display:"flex",
+  width:"100vw" ,
+  height:"100vh", 
+  justifyContent:"center",
+  alignItems:"center",
+  background:"linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620)"
+}))
+
 export const PaperTag = styled(Paper)(()=>({
   padding: "0%",
   backgroundColor: "#4D4548",
@@ -15,12 +24,14 @@ export const PaperTag = styled(Paper)(()=>({
   textTransform:"capitalize",
 }))
 
-export const movesDetail = styled(Box)(()=>({
-   maxWidth: "50rem",
+export const MovesDetail = styled(Box)(()=>({
+   width: "100vw",
   maxHeight: "100vh",
   overflow:"auto",
   display:"flex", 
-justifyContent:"space-around",
+  flexDirection:"column",
+justifyContent:"center",
+alignItems:"center",
   flexWrap:"wrap",
  
 }))
@@ -36,4 +47,10 @@ export const FancyDivider = styled(Box)(()=>({
         background: 'linear-gradient(to right, #ff9800, #f44336)',
         borderRadius: 2,
         marginBottom:4
+}))
+
+export const ChipTag = styled(Box)(()=>({
+   color:"red",
+   margin:"0.5rem",
+  textTransform:"capitalize"
 }))
