@@ -14,6 +14,7 @@ const usePokemon = () => {
   }, []);
 
  const getPokemonDetails = useCallback(async(id)=>{
+  console.log("Button Clicked",id);
 const response = await getPokemon(id); 
 console.log("PDetails...",response);
 return response;

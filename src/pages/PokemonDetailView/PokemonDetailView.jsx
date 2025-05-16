@@ -11,16 +11,18 @@ import { useParams } from 'react-router-dom';
 import {PaperTag,FancyDivider,MovesDetail, ParentTag } from './PokemonDetailView.styles';
 import {Chip} from '@mui/material';
 import { ArrowDownward } from '@mui/icons-material';
+
 const PokemonDetailView = () => {
 const {id} = useParams();
 const {pokemonImage,evolutionSpecies,abilities,stats,moves,movesInDetail,pokemonName,fetchPokemonById,handleDetailMoves} = useContext(pokemonContext);
+
 
   useEffect(()=>{
   if(id)
   {
     fetchPokemonById(id);
   }
-  },[id])
+  },[])
 
 
   return (
