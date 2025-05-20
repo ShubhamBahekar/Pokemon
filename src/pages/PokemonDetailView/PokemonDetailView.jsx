@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, Card, CircularProgress, useMediaQuery} from "@mui/material";
 import React, { useEffect } from "react";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -20,6 +20,7 @@ import { useCallback } from "react";
 
 const PokemonDetailView = () => {
   const { id } = useParams();
+  const isMobile = useMediaQuery("(max-width:600px)");
   const {
     pokemonImage,
     setPokemonImage,
@@ -45,7 +46,7 @@ const PokemonDetailView = () => {
         const pokemonData = await getPokemonDetails(id);
         console.log("Got Pokémon details:", pokemonData);
 
-        // Extract relevant data
+    
         const dataOfAbility =
           pokemonData?.abilities?.map((item) => item.ability?.name) || [];
         const nameInStats =
@@ -59,21 +60,21 @@ const PokemonDetailView = () => {
           pokemonData?.sprites?.other?.dream_world?.front_default || "";
         const nameOfPokemon = pokemonData?.name || "";
 
-        // Set state
+ 
         setAbilities(dataOfAbility);
         setStats(nameInStats);
         setMoves(dataOfMoves);
         setPokemonImage(dataOfImage);
         setPokemonName(nameOfPokemon);
 
-        // Fetch species and evolution data
+  
         const speciesRes = await fetch(pokemonData.species.url);
         const speciesData = await speciesRes.json();
 
         const evoRes = await fetch(speciesData.evolution_chain.url);
         const evoData = await evoRes.json();
 
-        // Recursive functions to extract evolution species
+   
         const getSpeciesNames = (evolves_to, names) => {
           evolves_to.forEach((evo) => {
             names.push(evo.species.name);
@@ -123,15 +124,6 @@ const PokemonDetailView = () => {
 
   return (
     <ParentTag
-      sx={{
-        display: "flex",
-        width: "100vw",
-        height: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
-        background:
-          "linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620);",
-      }}
     >
       {movesInDetail ? (
         <Box width={"100vw"} height={"auto"}>
@@ -146,12 +138,17 @@ const PokemonDetailView = () => {
                 />
               ))}
             </Box>
-            <Button onClick={handleDetailMoves}>Close</Button>
+            <Button  onClick={handleDetailMoves} color="info" variant="outlined" sx={{marginTop:"2rem"}}>Close</Button>
           </MovesDetail>
         </Box>
       ) : (
         <PaperTag>
-          <Box
+        {isMobile?(<Box display={"flex"} justifyContent={"center"} width={"auto"} minWidth={"340px"}><Card sx= {{width:"100%", background:"linear-gradient(to right top, #232030, #37202d, #422522, #402f19, #323b1e)"}} > <CardMedia
+        sx={{ height: 390,objectFit:"contain",padding:"2.5%" }}
+        image={pokemonImage}
+        title="green iguana"
+        component={"img"}
+      /></Card></Box>):(<> <Box
             display={"flex"}
             flexDirection={"row"}
             justifyContent={"space-around"}
@@ -212,7 +209,9 @@ const PokemonDetailView = () => {
                 ))}
               </Box>
             </Box>
-          </Box>
+          </Box></>)}
+
+         
 
           <CardContent>
             <Box
@@ -235,7 +234,7 @@ const PokemonDetailView = () => {
 
               <Box
                 display={"flex"}
-                justifyContent={"space-between"}
+                justifyContent={"space-around"}
                 flexWrap={"wrap"}
                 columnGap={3}
                 rowGap={1}

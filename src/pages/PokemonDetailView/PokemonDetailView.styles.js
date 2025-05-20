@@ -4,35 +4,58 @@ import {Paper} from "@mui/material";
 
 
 
-export const ParentTag = styled(Box)(()=>({
+export const ParentTag = styled(Box)(({theme})=>({
   display:"flex",
   width:"100vw" ,
   height:"100vh", 
   justifyContent:"center",
   alignItems:"center",
-  background:"linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620)"
+background:"linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620)",
+
+
+ [theme.breakpoints.up("md")]:{
+   height:"100vh", 
+  },
+  
 }))
 
-export const PaperTag = styled(Paper)(()=>({
+export const PaperTag = styled(Paper)(({theme})=>({
   padding: "0%",
   backgroundColor: "#4D4548",
   background:"linear-gradient(to right top, #232030, #37202d, #422522, #402f19, #323b1e)",
-  borderRadius: "1rem",
-  width:"90vw",
+  width:"100vw",
   maxHeight: "100vh",
   overflow:"auto",
   textTransform:"capitalize",
+
+  [theme.breakpoints.up("md")]:{
+    width:"100vw",
+      borderRadius: "1rem",
+       maxHeight: "100vh",
+  },
+  [theme.breakpoints.up("lg")]:{
+    width:"100vw",
+      borderRadius: "1rem",
+      maxHeight: "100vh",
+  },
+  [theme.breakpoints.up("xl")]:{
+    width:"100vw",
+    maxHeight: "100vh",
+    
+  }
 }))
 
 export const MovesDetail = styled(Box)(()=>({
    width: "100vw",
-  maxHeight: "100vh",
+  maxHeight: "auto",
   overflow:"auto",
   display:"flex", 
   flexDirection:"column",
 justifyContent:"center",
 alignItems:"center",
   flexWrap:"wrap",
+  background:"linear-gradient(to right top, #070411, #07101a, #05191f, #062021, #0e2620)",
+  padding:"1%"
  
 }))
 
